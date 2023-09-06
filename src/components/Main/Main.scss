@@ -27,6 +27,10 @@
   &_disabled {
     background-color: gray;
     cursor: default;
+
+    &:hover {
+      cursor: default;
+    }
   }
 }
 
