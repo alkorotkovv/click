@@ -1,0 +1,42 @@
+.content {
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+}
+
+.button {
+  margin: 0;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_disabled {
+    background-color: gray;
+    cursor: default;
+  }
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  color: darkblue;
+
+  &_yellow {
+    color: darkgoldenrod;
+  }
+}
