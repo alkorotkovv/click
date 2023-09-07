@@ -1,18 +1,13 @@
 import './Main.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Main: React.FC = () => {
 
+//Другая реализация
+/*
+const [seconds, setSeconds] = useState(0);
 const [count, setCount] = useState(0);
-const [allow, setAllow] = useState(true);
-const [k, setK] = useState(0);
-const [lastClicked, setLastClicked] = useState(Date.now());
 const [newClicked, setNewClicked] = useState(Date.now());
-
-//const timerId: number = window.setInterval(() => console.log(k), 1000);
-//window.setInterval(() => console.log(k), 1000);
-
-const [seconds, setSeconds] = useState(1);
 
 useEffect(() => {
   const timer = setInterval(() => {
@@ -22,60 +17,44 @@ useEffect(() => {
 });
 
 useEffect(() => {
-  console.log("seconds " + seconds)
-  console.log("last " + lastClicked)
-  console.log("new  " + newClicked)
-  if (k) {
+  if (count) {
     if ((Date.now() > (newClicked + 1000))) {
-      setAllow(false);
+      setIsAllow(false);
     }
     else {
-      setAllow(true);
+      setIsAllow(true);
     }
   }
 }, [seconds])
 
-useEffect(() => {
-  //console.log("k " + k)
-}, [k])
-
-useEffect(() => {
-  //console.log("last " + lastClicked)
-
-}, [lastClicked])
-
-useEffect(() => {
-  //console.log("new  " + newClicked)
-
-}, [newClicked])
-
-
-function onTimer() {
-  //console.log(k)
-  //console.log("last " + lastClicked)
-  //console.log("now " + newClicked)
-}
-
-
+//Обработчик клика на кнопку
 function handleButtonClick() {
-
-  if (k === 0) {
-    setLastClicked(Date.now());
-    setNewClicked(Date.now());
-  }
-  else {
-    setLastClicked(newClicked);
-    setNewClicked(Date.now());
-  }
-
   setCount(count + 1);
-  setK(k+1);
+  setNewClicked(Date.now());
 }
+*/
+
+const [isAllow, setIsAllow] = useState(true);
+const buttonRef = useRef(0);
+
+
+function debounce( callback:() => void, delay:number ) {
+  let timeout: number;
+  return function() {
+    //вызывается при каждом клике
+    buttonRef.current = buttonRef.current + 1;
+    clearTimeout( timeout );
+    timeout = window.setTimeout( callback, delay );
+  }
+}
+
+const debouncedButtonClick = debounce(() => setIsAllow(false), 1000);
+
 
 return (
   <main className="content">
-    <button className={allow ? "button" : "button button_disabled" } onClick={handleButtonClick} disabled={!allow}>Кликнуть</button>
-    <p className='title'>Кликнули {count} раз</p>
+    <button className={isAllow ? "button" : "button button_disabled" } onClick={debouncedButtonClick} disabled={!isAllow}>Кликнуть</button>
+    <p className='title'>Кликнули {buttonRef.current} раз</p>
     <p className='title title_yellow'>По версии сервера 10 раз</p>
   </main>
 );
