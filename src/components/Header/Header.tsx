@@ -1,7 +1,6 @@
 import './Header.scss';
-import React from 'react';
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <header className='header'>Приложение кликер</header>
   );

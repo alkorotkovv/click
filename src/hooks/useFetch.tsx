@@ -31,7 +31,7 @@ export const useFetch = (count: number) => {
 
   //Запрашиваем данные только если кликнули
   useEffect(() => {
-    if (count) fetchData(url, count);
+    count && fetchData(url, count);
   }, [count]);
 
 
