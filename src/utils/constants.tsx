@@ -1,1 +1,1 @@
-export const url = "https://zont-online.ru/api/docs/#3394112aa9";
+export const url = "https://lk.zont-online.ru/api/button_count";

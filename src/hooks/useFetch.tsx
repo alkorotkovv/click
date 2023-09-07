@@ -1,33 +1,48 @@
 import { useState, useEffect } from "react";
+import {url} from '../utils/constants'
 
-export const useFetch = (url:string, count:number) => {
+export const useFetch = (count:number) => {
 
+  interface result {
+    ok?: boolean,
+    count?: number,
+    error?: string,
+    error_ui?: string
+  }
+  
   interface dataObject {
     loading?: boolean,
-    data?: number,
+    data?: result,
     error?: string
   }
 
-  const [data, setData] = useState<dataObject>({loading: false, data: 0, error: ""})
+  const [data, setData] = useState<dataObject>({loading: false, data: {ok: false, count: 0, error: "", error_ui: ""}, error: ""})
 
   function fetchData(url:string, count:number) {
     setData({ loading: true});
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => {
-        setData({ loading: false, data: res.data });
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-ZONT-Client': 'akorotkov95@mail.ru'
+      },
+      body: JSON.stringify({
+        count: count
       })
-      .catch((error) => {
-        setData({ loading: false, data: count, error: "Ошибка"  });
-      });
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      //console.log(res)
+      setData({ loading: false, data: res });
+    })
+    .catch((error) => {
+      setData({ loading: false, error: "Ошибка"  });
+    });
   }
   
   useEffect(() => {
-    if (count) {
-      console.log("делаем запрос")
-      fetchData(url, count);
-    }
-  }, [url, count]);
+    if (count) fetchData(url, count);
+  }, [count]);
   
   
   return data;
