@@ -1,11 +1,17 @@
 import './Answer.scss';
 import { dataObject } from '../../interfaces/interfaces'
 
-const Answer = ({ loading, data }: dataObject) => {
+const Answer = ({ loading, data, error }: dataObject) => {
 
   return (
     <p className='title title_yellow'>
-      {(!data?.ok && !loading) ? data?.error_ui : (loading) ? ' Идет загрузка данных с сервера ' : 'По версии сервера ' + (!loading ? data?.count : "*") + ' раз'}
+      { error 
+      ? error 
+      : (!data?.ok && !loading) 
+      ? data?.error_ui 
+      : (loading) 
+      ? ' Идет загрузка данных с сервера ' 
+      : 'По версии сервера ' + data?.count + ' раз'}
     </p>
   );
 }

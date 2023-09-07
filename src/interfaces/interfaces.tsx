@@ -7,5 +7,6 @@ export interface result {
 
 export interface dataObject {
   loading: boolean,
-  data?: result
+  data?: result,
+  error?: string
 }

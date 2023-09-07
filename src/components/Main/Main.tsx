@@ -1,6 +1,7 @@
 import './Main.scss';
 import { useState, useRef } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import { url } from '../../utils/constants'
 import Answer from '../Answer/Answer';
 
 const Main = () => {
@@ -38,13 +39,13 @@ const Main = () => {
 
   const buttonRef = useRef(0);
   const [count, setCount] = useState(0);
-  const data = useFetch(count);
+  const data = useFetch(url, count);
 
   function debounce(callback: () => void, delay: number) {
     let timeout: number;
     return function () {
       //вызывается при каждом клике
-      buttonRef.current = buttonRef.current + 1;
+      buttonRef.current += 1;
       clearTimeout(timeout);
       timeout = window.setTimeout(callback, delay);
     }
@@ -61,8 +62,8 @@ const Main = () => {
       >
         {data.loading ? "Загрузка данных" : "Кликнуть"}
       </button>
-      <p className='title'>Кликнули {buttonRef.current} раз</p>
-      <Answer loading={data.loading} data={data.data} />
+      <p className='title'>Кликнули {count} раз</p>
+      <Answer loading={data.loading} data={data.data} error={data.error}/>
     </main>
   );
 }

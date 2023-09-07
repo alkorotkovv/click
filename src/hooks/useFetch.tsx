@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { url } from '../utils/constants'
 import { dataObject } from '../interfaces/interfaces'
 
-export const useFetch = (count: number) => {
+export const useFetch = (url: string, count: number) => {
 
-  const [data, setData] = useState<dataObject>({ loading: false, data: { ok: true, count: 0, error: "", error_ui: "" } })
+  const [data, setData] = useState<dataObject>({ loading: false, data: { ok: true, count: 0, error: "", error_ui: "" }, error: "" })
 
   function fetchData(url: string, count: number) {
     setData({ loading: true });
@@ -20,19 +19,18 @@ export const useFetch = (count: number) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        //console.log(res)
         setData({ loading: false, data: res });
       })
       .catch((error) => {
-        setData({ loading: false });
-        console.log("Ошибка")
+        //console.log(error.message)
+        setData({ loading: false, error: error.message });
       });
   }
 
   //Запрашиваем данные только если кликнули
   useEffect(() => {
-    count && fetchData(url, count);
-  }, [count]);
+    count && fetchData(url, count);    
+  }, [count, url]);
 
 
   return data;
