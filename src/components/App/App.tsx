@@ -1,11 +1,10 @@
 import './App.scss';
-import React from 'react';
 import Header from '..//Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="app">
       <Header />
