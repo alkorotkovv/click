@@ -1,2 +1,51 @@
 @import "../vendor/fonts/fonts.css";
 @import "../vendor/normalize.css";
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: black;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+}
+
+.header {
+  margin: 0;
+  padding: 30px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.content {
+  min-width: 300px;
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  color: darkblue;
+}
+
+.header {
+  margin: 0;
+  padding: 30px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.title_yellow {
+  color: darkgoldenrod;
+}
+
+/*# sourceMappingURL=styles.css.map */

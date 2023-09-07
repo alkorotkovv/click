@@ -2,6 +2,7 @@ import './Main.scss';
 import { useState, useRef } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import { url } from '../../utils/constants'
+import Button from '@mui/material/Button';
 import Answer from '../Answer/Answer';
 
 const Main = () => {
@@ -54,14 +55,15 @@ const Main = () => {
   const debouncedButtonClick = debounce(() => setCount(buttonRef.current), 1000);
 
   return (
-    <main className="content">
-      <button
-        className={!data.loading ? "button" : "button button_disabled"}
+    <main className="content">      
+      <Button 
+        variant="contained"
+        color="warning"
         onClick={debouncedButtonClick}
         disabled={data.loading}
       >
         {data.loading ? "Загрузка данных" : "Кликнуть"}
-      </button>
+      </Button>
       <p className='title'>Кликнули {count} раз</p>
       <Answer loading={data.loading} data={data.data} error={data.error}/>
     </main>
