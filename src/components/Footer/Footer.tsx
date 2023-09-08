@@ -1,9 +1,12 @@
 import './Footer.scss';
+import { Typography } from '@mui/material';
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p className='copyright'>Коротков Александр</p>
+      <Typography variant="h6" sx={{ color: "#FFFFFF", fontWeight: 700 }} >
+        Коротков Александр
+      </Typography>
     </footer>
   );
 }

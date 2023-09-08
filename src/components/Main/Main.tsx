@@ -2,8 +2,9 @@ import './Main.scss';
 import { useState, useRef } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import { url } from '../../utils/constants'
-import Button from '@mui/material/Button';
+import { Button, Box, Typography, SvgIcon } from '@mui/material';
 import Answer from '../Answer/Answer';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const Main = () => {
 
@@ -38,7 +39,7 @@ const Main = () => {
   }
   */
 
-  const buttonRef = useRef(0);
+  const countRef = useRef(0);
   const [count, setCount] = useState(0);
   const data = useFetch(url, count);
 
@@ -46,26 +47,32 @@ const Main = () => {
     let timeout: number;
     return function () {
       //вызывается при каждом клике
-      buttonRef.current += 1;
+      countRef.current += 1;
       clearTimeout(timeout);
       timeout = window.setTimeout(callback, delay);
     }
-  }
+  };
 
-  const debouncedButtonClick = debounce(() => setCount(buttonRef.current), 1000);
+  const debouncedButtonClick = debounce(() => setCount(countRef.current), 1000);
 
   return (
-    <main className="content">      
-      <Button 
+    <main className="content">
+      <Button
         variant="contained"
         color="warning"
+        sx={{ fontSize: 16, fontWeight: 700 }}
         onClick={debouncedButtonClick}
         disabled={data.loading}
       >
         {data.loading ? "Загрузка данных" : "Кликнуть"}
       </Button>
-      <p className='title'>Кликнули {count} раз</p>
-      <Answer loading={data.loading} data={data.data} error={data.error}/>
+      <Box sx={{ display: "flex", gap: 1, flexDirection: 'row', fontWeight: 700 }}>
+        <SvgIcon component={ErrorOutlineIcon} color="primary" />
+        <Typography variant="subtitle1" color="primary" sx={{ fontWeight: 700 }} >
+          Кликнули {count} раз
+        </Typography>
+      </Box>
+      <Answer loading={data.loading} data={data.data} error={data.error} />
     </main>
   );
 }

@@ -22,14 +22,13 @@ export const useFetch = (url: string, count: number) => {
         setData({ loading: false, data: res });
       })
       .catch((error) => {
-        //console.log(error.message)
         setData({ loading: false, error: error.message });
       });
-  }
+  };
 
   //Запрашиваем данные только если кликнули
   useEffect(() => {
-    count && fetchData(url, count);    
+    count && fetchData(url, count);
   }, [count, url]);
 
 
