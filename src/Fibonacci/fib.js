@@ -15,7 +15,7 @@ let n = 3;
 let sum = 0;
 while (fib(n) < 7000000) {
   console.log("текущее число " + fib(n));
-  fib(n) % 2 === 0 ? sum += fib(n) : sum += 0;
+  fib(n) % 2 === 0 ? (sum += fib(n)) : (sum += 0);
   console.log("сумма " + sum);
   n += 1;
 }
