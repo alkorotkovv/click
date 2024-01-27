@@ -2,7 +2,7 @@ import React from 'react';
 import './Table.css';
 
 function Table() {
-  const data = Array.from({length: 20}, (_, i) => i + 1);
+  const data = Array.from({length: 21}, (_, i) => i + 1);
 
   return (
     <div className="table">
