@@ -5,6 +5,7 @@ import { url } from '../../utils/constants'
 import Button from '@mui/material/Button';
 import Answer from '../Answer/Answer';
 import Chart from "react-apexcharts";
+import Table from '../Table/Table';
 
 const Main = () => {
 
@@ -371,7 +372,8 @@ const Main = () => {
         {data.loading ? "Загрузка данных" : "Кликнуть"}
       </Button>
       <p className='title'>Кликнули {count} раз</p>
-      <Answer loading={data.loading} data={data.data} error={data.error}/>
+      {//<Answer loading={data.loading} data={data.data} error={data.error}/>
+      }
             <Chart
               options={options.options}
               series={options.series}
@@ -392,6 +394,7 @@ const Main = () => {
               type="bar"
               width="500"
             />
+            <Table />
     </main>
   );
 }

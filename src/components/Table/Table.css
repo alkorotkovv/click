@@ -1,0 +1,42 @@
+.table {
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.header {
+  grid-column: 1 / 23;
+  grid-row: 1;
+}
+
+.header-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #eee;
+}
+
+.header-text {
+  transform: rotate(90deg);
+  white-space: nowrap;
+}
+
+.body {
+  grid-column: 1 / 23;
+  grid-row: 2;
+}
+
+.body-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #000;
+}
