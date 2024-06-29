@@ -1,0 +1,9 @@
+.pagination button {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 5px;
+  }
+  
+  .pagination button.current {
+    background: #ccc;
+  }

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Answer from '../Answer/Answer';
 import Chart from "react-apexcharts";
 import Table from '../Table/Table';
+import Pagination from '../Pagination/Pagination';
 
 const Main = () => {
 
@@ -395,6 +396,7 @@ const Main = () => {
               width="500"
             />
             <Table />
+            <Pagination />
     </main>
   );
 }
